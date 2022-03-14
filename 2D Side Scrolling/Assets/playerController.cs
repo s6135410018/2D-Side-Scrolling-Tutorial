@@ -17,7 +17,7 @@ public class playerController : MonoBehaviour
     private Physics2D physics2D;    
     private Animator animator;
     private int healthBar = 100;
-
+    public GameObject hitArea;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +46,7 @@ public class playerController : MonoBehaviour
             animator.SetBool("Jump", true);
             nextJumpPress = Time.time + jumpRate;
             rb.AddForce(jumpSpeed * (Vector2.up * jumpPower));
+            print(jumpSpeed * (Vector2.up * jumpPower));
         }
         else
         {
@@ -55,10 +56,21 @@ public class playerController : MonoBehaviour
         {
             animator.SetBool("Attack", true);
             nextFireRate = Time.time + fireRate;
+            Attack();
         }
         else
         {
             animator.SetBool("Attack", false);
         }
+    }
+   public void Attack()
+    {
+        StartCoroutine(DelaySlash());
+    }
+    IEnumerator DelaySlash()
+    {
+        yield return new WaitForSeconds(0.3f);
+        Instantiate(hitArea,rb.position + Vector2.up * -0.3f, transform.rotation);
+
     }
 }
