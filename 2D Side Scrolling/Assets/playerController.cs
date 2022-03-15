@@ -103,6 +103,9 @@ public class playerController : MonoBehaviour
         {
             healthBar = 0;
         }
-        
+        if (other.gameObject.tag == "enemy")
+        {
+            TakeDamage(10);
+        }
     }
 }

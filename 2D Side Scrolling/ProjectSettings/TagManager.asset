@@ -6,6 +6,9 @@ TagManager:
   tags:
   - health
   - deathzone
+  - enemy
+  - weaponA
+  - follow
   layers:
   - Default
   - TransparentFX
